@@ -17,6 +17,14 @@ export function apiSearchRole(data) {
   })
 }
 
+export function apiSearchRole1(data) {
+  return request({
+    url: '/user/searchUserDto1',
+    method: 'post',
+    data
+  })
+}
+
 export function apiAddRole(data) {
   return request({
     url: '/user/register',

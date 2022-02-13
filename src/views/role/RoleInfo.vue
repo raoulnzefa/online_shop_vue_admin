@@ -41,6 +41,15 @@
         >
         </el-table-column>
         <el-table-column
+                v-if="!transferValue.includes('用户账号')"
+                align="center"
+                width="170"
+                label="用户账号"
+        ><template slot-scope="scope">{{
+          scope.row.user.userId || "无"
+          }}</template>
+        </el-table-column>
+        <el-table-column
           v-if="!transferValue.includes('地址')"
           align="center"
           width="170"
@@ -161,7 +170,7 @@ import ControlPanel from "@/views/component/ControlPanel";
 import AddRolePanel from "@/views/component/AddRolePanel";
 import { messageInfo } from "@/utils/MessageInfo";
 import { resultCheck } from "@/utils/result";
-import { apiSearchRole, apiGetAllRole, apiDeleteRole } from "@/api/role";
+import { /*apiSearchRole,*/apiSearchRole1, apiGetAllRole, apiDeleteRole } from "@/api/role";
 
 export default {
   name: "Role",
@@ -202,20 +211,24 @@ export default {
           value: 1,
         },
         {
-          key: "用户名",
+          key: "用户账号",
           value: 2,
         },
         {
-          key: "地址",
+          key: "用户名",
           value: 3,
         },
         {
-          key: "详细地址",
+          key: "地址",
           value: 4,
         },
         {
-          key: "创建时间",
+          key: "详细地址",
           value: 5,
+        },
+        {
+          key: "创建时间",
+          value: 6,
         },
         // {
         //   key: "修改时间",
@@ -276,10 +289,13 @@ export default {
     //  查询用户信息
     searchInfo(searchKey) {
       if (searchKey.trim() !== "") {
-        apiSearchRole({ userid: searchKey })
+        //apiSearchRole({ userid: searchKey })
+        apiSearchRole1({ username: searchKey })
           .then((res) => {
             this.dataList = [];
-            this.dataList.push(res.data);
+            // this.dataList.push(res.data);
+            this.dataList=res.data;
+            this.total=this.dataList.length
           })
           .catch(() => {
             this.dataList = null;

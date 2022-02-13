@@ -204,7 +204,8 @@ import { messageInfo } from "@/utils/MessageInfo";
 import { resultCheck } from "@/utils/result";
 import {
   apiGetAllProduct,
-  apiSearchProduct,
+  // apiSearchProduct,
+  apiSearchProduct1,
   apiDeleteProduct,
 } from "@/api/product";
 import { apiDeleteProductInfo } from "@/api/productInfo";
@@ -329,8 +330,10 @@ export default {
     //  查询菜单信息
     searchInfo(searchKey) {
       if (searchKey.trim() !== "") {
-        apiSearchProduct({ pname: searchKey }).then((res) => {
+        // apiSearchProduct({ pname: searchKey }).then((res) => {
+          apiSearchProduct1({ pname: searchKey }).then((res) => {
           this.dataList = resultCheck(res, true);
+            this.total = this.dataList.length
         });
       } else {
         messageInfo({ type: "warning", message: "关键词不能为空哦！" });
@@ -395,7 +398,6 @@ export default {
     //  跳转至修改界面
     toUpdate(proiductData) {
       this.updateData = JSON.parse(JSON.stringify(proiductData));
-
       this.updateData.productInfos = JSON.parse(
         JSON.stringify(proiductData.productInfos)
       );

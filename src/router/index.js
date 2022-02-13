@@ -14,7 +14,7 @@ const Welcome = () => import('@/views/welcome/Welcome');
 const DailySales = () => import('@/views/sales/DailySales');
 const RoleInfo = () => import('@/views/role/RoleInfo');
 const ProductInfo = () => import('@/views/product/ProductInfo');
-const OrderInfo = () => import('@/views/order');
+const OrderInfo = () => import('@/views/order/OrderInfo');
 const Log = () => import('@/views/log/Log');
 //=======================  组件引入  ===========================
 

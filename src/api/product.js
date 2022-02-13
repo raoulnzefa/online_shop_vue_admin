@@ -15,6 +15,14 @@ export function apiSearchProduct(data) {
     })
 }
 
+export function apiSearchProduct1(data) {
+    return request({
+        url: '/product/searchProduct1',
+        method: 'post',
+        data
+    })
+}
+
 export function apiAddProduct(data) {
     return request({
         url: '/product/addProduct',

@@ -23,6 +23,7 @@
               v-model="updateData.user.userId"
               border
               placeholder="请输入用户名称..."
+              :disabled="this.updateData.user.id !== -1"
             />
           </el-form-item>
           <el-form-item label="用户名称">

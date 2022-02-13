@@ -8,6 +8,14 @@ export function apiListProductInfo(data) {
     })
 }
 
+export function apiSelectProductInfo(data) {
+    return request({
+        url: '/productInfo/selectProductInfo',
+        method: 'post',
+        data
+    })
+}
+
 export function apiAddProductInfo(data) {
     return request({
         url: '/productInfo/addProductInfo',

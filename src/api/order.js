@@ -7,6 +7,21 @@ export function apiGetAllOrder() {
     })
 }
 
+export function apiGetList3(data) {
+    return request({
+        url: '/order/list3',
+        method: 'post',
+        data
+    })
+}
+export function apiGetList1(data) {
+    return request({
+        url: '/order/list1',
+        method: 'post',
+        data
+    })
+}
+
 export function apiSearchOrder(data) {
     return request({
         url: '/order/searchOrder',
