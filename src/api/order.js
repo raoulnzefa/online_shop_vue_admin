@@ -7,9 +7,9 @@ export function apiGetAllOrder() {
     })
 }
 
-export function apiGetList3(data) {
+export function apiGetList4(data) {
     return request({
-        url: '/order/list3',
+        url: '/order/list4',
         method: 'post',
         data
     })
@@ -33,6 +33,13 @@ export function apiSearchOrder(data) {
 export function apiUpdateOrder(data) {
     return request({
         url: '/order/updateOrder',
+        method: 'post',
+        data
+    })
+}
+export function apiDeleteOrder(data) {
+    return request({
+        url: '/order/deleteOrder',
         method: 'post',
         data
     })

@@ -83,23 +83,32 @@
                 :min="1"
               ></el-input-number>
             </el-form-item>
-            <el-form-item label="封面" align="center" prop="pimg" v-model="item.pimg">
+            <el-form-item label="封面" align="center" prop="pimg">
               <div v-if=!item.pimg>
-              <el-upload
-                      action="#"
-                      list-type="picture-card"
-                      :auto-upload="false"
-                      :on-preview="handlePictureCardPreview"
-                      :on-remove="handleRemove"
-                      :on-change="changImage"
-                       limit="1"
-                      v-model="item.pimg">
-                <i class="el-icon-plus"></i>
-              </el-upload>
-              <el-dialog :visible.sync="dialogVisible">
-                <img  width="100%" :src=dialogImageUrl alt="">
-              </el-dialog>
+<!--              <el-upload-->
+<!--                      action="#"-->
+<!--                      list-type="picture-card"-->
+<!--                      :auto-upload="false"-->
+<!--                      :on-preview="handlePictureCardPreview"-->
+<!--                      :on-remove="handleRemove"-->
+<!--                      :on-change="changImage"-->
+<!--                       limit="1"-->
+<!--                      v-model="item.pimg">-->
+<!--                <i class="el-icon-plus"></i>-->
+<!--              </el-upload>-->
+<!--              <el-dialog :visible.sync="dialogVisible">-->
+<!--                <img  width="100%" :src=dialogImageUrl alt="">-->
+<!--              </el-dialog>-->
 <!--                  <el-input v-model="item.pimg" disabled style="display:none"></el-input>-->
+<!--                  <el-button type="primary" @click="openFile(item)" round>选择图片</el-button>-->
+<!--                  &lt;!&ndash;          <el-button type="primary" v-on:click="showRealPath()" round>显示路径</el-button>&ndash;&gt;-->
+<!--                  <input type="file"  id="{{item.ppid}}" style="display: none"/>-->
+<!--&lt;!&ndash;                  <el-form-item label="商品图片">&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                      <input type="file" name="filename" id="open"  style="display:none"/>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                      <input type="file" name="filename" id="{{item.ppid}}"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <el-input v-model="updateData.productInfos[index].pimg" disabled style="display:none"></el-input>&ndash;&gt;-->
+<!--&lt;!&ndash;                  </el-form-item>&ndash;&gt;-->
+                <input type="file" />
               </div>
               <div v-else>
                 <img  width="100%"   :src="'http://localhost:8080/images/'+item.pimg">
@@ -175,18 +184,23 @@ export default {
       },
       dialogImageUrl: '',
       dialogVisible: false,
-      imageUrl:''
+      imageUrls:[{ppid:'', pimg:''}],
+        imageurl:''
     };
   },
   methods: {
-    openFile: function () {
-      document.getElementById('open').click()
-      this.showRealPath()
-    },
-    showRealPath: function () {
-      // document.getElementById('input01').value = document.getElementById('open').value
-      this.item.pimg = document.getElementById('open').value
-    },
+    // openFile(index) {
+    //   document.getElementById('open').click()
+    //   this.imageurl = document.querySelector('#open').file[0].name
+    //   this.updateData.productInfos[index].pimg=document.getElementById('open').value
+    //
+    // },
+    //   openFile(item) {
+    //         document.getElementById(item.ppid).click()
+    //         this.imageurl = document.getElementById(item.ppid).value
+    //   },
+
+
     handleRemove(file, fileList) {
       console.log(file, fileList);
     },
