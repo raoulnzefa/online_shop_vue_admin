@@ -7,7 +7,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">访问人数</div>
-          {{ panelData.newVisitis }}
+          {{ saleDTO.newVisitis }}
         </div>
       </div>
     </el-col>
@@ -18,7 +18,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">评论</div>
-          {{ panelData.messages }}
+          {{ saleDTO.messages }}
         </div>
       </div>
     </el-col>
@@ -29,7 +29,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">营业额</div>
-          {{ panelData.purchases }}
+          {{ saleDTO.purchases }}
         </div>
       </div>
     </el-col>
@@ -40,7 +40,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">销售额</div>
-          {{ panelData.shoppings }}
+          {{ saleDTO.shoppings }}
         </div>
       </div>
     </el-col>
@@ -48,10 +48,12 @@
 </template>
 
 <script>
+  import {apiSaleData} from  "@/api/sales.js";
+  import { messageInfo } from "@/utils/MessageInfo";
 export default {
   data() {
     return {
-      panelData: {
+      saleDTO: {
         newVisitis: 0,
         messages: 0,
         purchases: 0,
@@ -59,9 +61,21 @@ export default {
       },
     };
   },
+  created() {
+    this.initData();
+  },
   methods: {
     handleSetLineChartData(type) {
       this.$emit("handleSetLineChartData", type);
+    },
+    initData() {
+      apiSaleData().then((res) => {
+        if (res.status) {
+          this.saleDTO=res.data;
+        } else {
+          messageInfo({ type: "error", message: res.message });
+        }
+      });
     },
   },
 };

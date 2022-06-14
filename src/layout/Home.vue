@@ -33,7 +33,7 @@ export default {
   },
   created() {
     this.$notify.success({
-      message: "欢迎来到 (*￣3￣)╭<br> " + "秋风购物后台管理系统。",
+      message: "欢迎来到 (*￣3￣)╭<br> " + "网上书城后台管理系统。",
       duration: 5000,
       dangerouslyUseHTMLString: true,
     });

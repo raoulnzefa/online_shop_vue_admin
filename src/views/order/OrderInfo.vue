@@ -97,7 +97,18 @@
                   label="创建时间"
           >
               <template slot-scope="scope" v-if="!scope.row.productInfos">
-                  ￥{{ scope.row.createdTime }}
+                  {{ scope.row.createdTime }}
+              </template>
+          </el-table-column>
+          <el-table-column
+                  v-if="!transferValue.includes('更新时间')"
+                  align="center"
+                  width="200"
+                  style="color: red"
+                  label="更新时间"
+          >
+              <template slot-scope="scope" v-if="!scope.row.productInfos">
+                  ￥{{ scope.row.updatedTime}}
               </template>
           </el-table-column>
         <el-table-column align="center" min-width="179px" label="操作">
@@ -206,6 +217,10 @@
             key: "创建时间",
             value: 4,
           },
+            {
+                key: "更新时间",
+                value: 6,
+            },
           {
             key: "订单总价",
             value: 5,

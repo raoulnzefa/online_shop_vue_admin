@@ -11,9 +11,12 @@
 <script>
 import PanelGroup from "./components/PanelGroup";
 import LineChart from "./components/LineChart";
+import {apiSaleDataInfo} from  "@/api/sales.js";
+import { messageInfo } from "@/utils/MessageInfo";
+
 const chartData = {
   newVisitis: {
-    actualData: [120, 82, 91, 154, 162, 140, 145],
+    actualData: [50, 82, 91, 154, 162, 140, 145],
   },
   messages: {
     actualData: [180, 160, 151, 106, 145, 150, 130],
@@ -35,12 +38,40 @@ export default {
   data() {
     return {
       lineChartData: chartData.newVisitis.actualData,
+      allSaleData:{
+        newVisitis: {
+          actualData: [],
+        },
+        messages: {
+          actualData: [],
+        },
+        purchases: {
+          actualData: [],
+        },
+        shoppings: {
+          actualData: [],
+        },
+    },
     };
+  },
+  created() {
+    this.initData();
   },
   methods: {
     handleSetLineChartData(type) {
-      this.lineChartData = chartData[type].actualData;
+      this.lineChartData = this.allSaleData[type];
     },
+    initData() {
+      apiSaleDataInfo().then((res) => {
+        if (res.status) {
+          this.allSaleData=res.data;
+          this.lineChartData = this.allSaleData.newVisitis;
+        } else {
+          messageInfo({ type: "error", message: res.message });
+        }
+      });
+    },
+
   },
 };
 </script>

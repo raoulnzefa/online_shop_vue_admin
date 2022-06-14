@@ -15,6 +15,7 @@ export default {
   data() {
     return {
       chart: {},
+      array:[],
     };
   },
   mounted() {
@@ -32,12 +33,30 @@ export default {
     initData() {
       this.chart = this.$echarts.init(document.getElementById("mainChart"));
       //配置图表
+      let nowDate = new Date()
+      this.array = []
+      let year = nowDate.getFullYear()
+      let mon = nowDate.getMonth() + 2
+      for (let i = 0; i < 6; i++) {
+        mon = mon - 1
+        if (mon <= 0) {
+          year = year - 1
+          mon = mon + 12
+        }
+        if (mon < 10) {
+          mon = '0' + mon
+        }
+        this.array[5-i] = year + '-' + mon
+      }
       var option = {
+
         // title: {
-        //   text: "近几天的销售",
+        //   text: "半年内的书城情况",
         // },
         xAxis: {
-          data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+          data: this.array,
+            //       ["SevenAgo", "SixAgo", "FiveAgo", "FourAgo", "ThreeAgo", "TwoAgo",
+            // "OneAgo"],
           boundaryGap: false,
           axisTick: {
             show: false,
@@ -85,8 +104,12 @@ export default {
           },
         ],
       };
+
       this.chart.setOption(option);
     },
   },
+  getdate(){
+
+  }
 };
 </script>

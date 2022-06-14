@@ -52,7 +52,7 @@ export default {
           icon: "",
           children: [
             {
-              menuName: "日销售量",
+              menuName: "详细情况",
               path: "/home/dailySales",
             },
           ],
